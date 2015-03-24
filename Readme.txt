@@ -1,9 +1,58 @@
 
+Step1:   npm update -g express-genrator
+
+
+Step2:    express Example2
+
+Step3:    package.json (add mongodb dependencys)
+
+
+  "dependencies": {
+    "mongodb": "1.4",
+    "monk": "*",
+    "mongoskin":"*"
+  }
+}
+
+Step4: cd Example2
+
+Step5: npm install
+
+
+Step6:mkdir data
+
+
+
+
+step7:     >mongod --dbpath C:\Users\knaveenr\Desktop\NodeJs\ExpressProjects\Example1\data
+
+
+step8:   app.js    (Create Mango Db Connection)
+
+		
+	var mongo = require('mongoskin');
+var db = mongo.db("mongodb://localhost:27017/nodetest2", {native_parser:true});
+
+
+
+
+Step9:    app.js   (Make our Db acessable to App)
+
+
+//make our db acessable
+app.use(function(req,res,next){
+    req.db = db;
+console.log("----------------------------Check It Here----------------------");
+console.log(req.db);
+
+    next();
+});
+
 
 
 ----------------------------------Getting id from mongo and store on browser localstore-------------------------
 
-Step1: routes/users/     replace get request to
+Step10: routes/users/     replace get request to
 
 router.post('/ajaxadd', function(req, res) {
     var db = req.db;
@@ -19,7 +68,7 @@ console.log(email);
 });
 
 
-Step2: index.html
+Step11: index.html
 
 <html>
 <head>
